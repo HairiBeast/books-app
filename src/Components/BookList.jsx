@@ -2,12 +2,20 @@ import React, { useState, useEffect } from "react";
 import "../App.css";
 import axios from "axios";
 import { useAppContext } from "./context/appContext";
+import { useNavigate } from "react-router-dom";
 
 const BookList = () => {
   const API_URL = process.env.REACT_APP_API_URL;
   const [books, setBooks] = useState([]);
 
   const { favorites, addToFavorites, removeFromFavorites } = useAppContext();
+
+  const navigate = useNavigate();
+
+  const favoritesChecker = (id) => {
+    const boolean = favorites.some((book) => book.id === id);
+    return boolean;
+  };
 
   useEffect(() => {
     axios
@@ -17,7 +25,7 @@ const BookList = () => {
         setBooks(res.data);
       })
       .catch((err) => console.log(err));
-  });
+  }, [API_URL]);
 
   return (
     <div className="book-list">
@@ -27,10 +35,22 @@ const BookList = () => {
             <h4>{book.title}</h4>
           </div>
           <div>
-            <img src={book.image_url} alt="front cover" />
+            <img
+              src={book.image_url}
+              alt="front cover"
+              onClick={() => navigate(`/books/${book.id}`)}
+            />
           </div>
           <div>
-            <button>Add to favourites</button>
+            {favoritesChecker(book.id) ? (
+              <button onClick={() => removeFromFavorites(book.id)}>
+                Remove from favourites
+              </button>
+            ) : (
+              <button onClick={() => addToFavorites(book)}>
+                Add to favourites
+              </button>
+            )}
           </div>
         </div>
       ))}
