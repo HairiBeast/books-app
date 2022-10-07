@@ -15,7 +15,13 @@ export const useAppContext = () => {
 const AppContextProvider = ({ children }) => {
   const [favorites, setFavorites] = useState([]);
 
-  const addToFavorites = () => {};
+  const addToFavorites = (book) => {
+    const oldFavorites = [...favorites];
+
+    const newFavorites = oldFavorites.concat(book);
+
+    setFavorites(newFavorites);
+  };
 
   const removeFromFavorites = (id) => {};
 
