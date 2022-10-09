@@ -5,11 +5,13 @@ import BookDetails from "./Components/BookDetails.jsx";
 import Navbar from "./Components/Navbar.jsx";
 import Footer from "./Components/Footer.jsx";
 import Favorites from "./Components/Favorites.jsx";
+import SearchBar from "./Components/SearchBar.jsx";
 
 function App() {
   return (
     <div className="App">
       <Navbar />
+      <SearchBar />
       <Routes>
         <Route path="/" element={<BookList />} />
         <Route path="/books/:id" element={<BookDetails />} />

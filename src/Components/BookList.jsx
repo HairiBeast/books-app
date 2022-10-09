@@ -28,47 +28,42 @@ const BookList = () => {
   }, [API_URL]);
 
   return (
-    <>
-      <div className="search-bar">
-        <input className="search-input" />
-      </div>
-      <div className="book-list">
-        {books.map((book) => (
-          <div className="book" key={book.id}>
-            <div>
-              <h4>{book.title}</h4>
-            </div>
-            <div className="container">
-              <img
-                src={book.image_url}
-                alt="front cover"
-                onClick={() => navigate(`/books/${book.id}`)}
-              />
-              <div className="middle">
-                <div className="text">Details</div>
-              </div>
-            </div>
-            <div>
-              {favoritesChecker(book.id) ? (
-                <button
-                  className="favorites-button"
-                  onClick={() => removeFromFavorites(book.id)}
-                >
-                  Remove from favourites
-                </button>
-              ) : (
-                <button
-                  className="favorites-button"
-                  onClick={() => addToFavorites(book)}
-                >
-                  Add to favourites
-                </button>
-              )}
+    <div className="book-list">
+      {books.map((book) => (
+        <div className="book" key={book.id}>
+          <div>
+            <h4>{book.title}</h4>
+          </div>
+          <div className="container">
+            <img
+              src={book.image_url}
+              alt="front cover"
+              onClick={() => navigate(`/books/${book.id}`)}
+            />
+            <div className="middle">
+              <div className="text">Details</div>
             </div>
           </div>
-        ))}
-      </div>
-    </>
+          <div>
+            {favoritesChecker(book.id) ? (
+              <button
+                className="favorites-button"
+                onClick={() => removeFromFavorites(book.id)}
+              >
+                Remove from favourites
+              </button>
+            ) : (
+              <button
+                className="favorites-button"
+                onClick={() => addToFavorites(book)}
+              >
+                Add to favourites
+              </button>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
   );
 };
 
