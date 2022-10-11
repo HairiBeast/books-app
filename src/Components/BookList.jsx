@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import "../App.css";
 import axios from "axios";
 import { useAppContext } from "./context/appContext";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 // import { searchTerm } from "./SearchBar";
 
 const BookList = () => {
   const { favorites, addToFavorites, removeFromFavorites } = useAppContext();
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const favoritesChecker = (id) => {
     const boolean = favorites.some((book) => book.id === id);
@@ -33,35 +33,40 @@ const BookList = () => {
 
   return (
     <>
-      <section
-        onClick={() =>
-          setUrl(`https://example-data.draftbit.com/books?q=${query}`)
-        }
-      >
-        <input
-          label="Name"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-        <button>Search</button>
-      </section>
-      <div className="book-list">
-        {books.map((book) => (
+      {/* ===== Search Bar ===== */}
+      <div className="wrap">
+        <section
+          className="search"
+          onClick={() =>
+            setUrl(`https://example-data.draftbit.com/books?q=${query}`)
+          }
+        >
+          <input
+            className="search-term"
+            label="Name"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          <button className="search-button">Search</button>
+        </section>
+      </div>
+      {/* ===== End of Search Bar ===== */}
+
+      {books.map((book) => (
+        <section className="book-list" id="book-list">
           <div className="book" key={book.id}>
-            <div>
-              <h4>{book.title}</h4>
-            </div>
-            <div className="container">
+            <figure>
               <img
+                className="book-image"
                 src={book.image_url}
                 alt="front cover"
-                onClick={() => navigate(`/books/${book.id}`)}
               />
-              <div className="middle">
-                <div className="text">Details</div>
-              </div>
-            </div>
-            <div>
+              <figcaption>
+                <h3>{book.title}</h3>
+              </figcaption>
+            </figure>
+            <p>{book?.Quote1}</p>
+            <div className="buttons">
               {favoritesChecker(book.id) ? (
                 <button
                   className="favorites-button"
@@ -79,8 +84,8 @@ const BookList = () => {
               )}
             </div>
           </div>
-        ))}
-      </div>
+        </section>
+      ))}
     </>
   );
 };
