@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Playfair+Display|Source+Sans+Pro:200,400");
+@import url("https://fonts.googleapis.com/css?family=Playfair+Display|Source+Sans+Pro:200,400,500,700");
 
 h1,
 h2,
@@ -26,11 +26,13 @@ html {
 a {
   background-color: goldenrod;
   text-decoration: none;
+  font-size: large;
   color: white;
   border-radius: 0.25rem;
   text-align: center;
   display: inline-block;
   transition: all 0.3s;
+  width: 10rem;
 }
 
 a:hover {
@@ -73,11 +75,9 @@ a:hover {
 
 .book-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-gap: 4rem;
   padding: 2rem;
-  border: 1px solid #e2e2e2;
-  border-radius: 0.5rem;
 }
 
 .book-list > .book > figure {
@@ -86,10 +86,21 @@ a:hover {
   border-top-right-radius: 0.5rem;
   position: relative;
   width: 300px;
+  margin: 0 auto;
 }
 
 .book {
   text-align: center;
+  border: 1px solid #e2e2e2;
+  border-radius: 0.5rem;
+  padding: 0 10px 0 10px;
+  margin: 0 auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s;
+}
+
+.book:hover {
+  transform: scale(1.025);
 }
 
 .book-image {
@@ -101,6 +112,7 @@ a:hover {
   opacity: 1;
   width: 300px;
   height: 400px;
+  padding-top: 0.5rem;
 }
 
 .book-list > .book > figure > figcaption {
@@ -112,15 +124,50 @@ a:hover {
 
 .book-list > .book > figure > figcaption > h3 {
   color: white;
-  padding: 0.75rem;
+  padding: 0.25rem;
   font-size: 1.25rem;
+  font-weight: 200;
 }
 
-.book-list > .book > p {
+/* .book-list > .book > .rating-div {
+  background-color: rgba(0, 0, 0, 0.549);
+  text-decoration: none;
+  font-size: large;
+  color: white;
+  border-radius: 30px;
+  margin: 0 auto;
+  width: 130px;
+  text-align: center;
+}
+
+.book-list > .book > .rating-div > h3 {
+  font-size: large;
+  font-weight: 400;
+  line-height: 1.5;
+  padding: 0.5rem 0.25rem;
+  color: white;
+} */
+
+.book-list > .book > .quote-div {
+  height: 105px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.book-list > .book > .quote-div > p {
   font-size: 1rem;
   line-height: 1.5;
   padding: 1rem 0.75rem;
   color: #666666;
+  width: 300px;
+  height: 110;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.book-list > .book > .buttons {
+  text-align: center;
+  margin: 0 auto;
 }
 
 .book-list > .book > .buttons > .favorites-button {
@@ -130,9 +177,11 @@ a:hover {
   text-decoration: none;
   color: white;
   border-radius: 0.25rem;
+  border: none;
   text-align: center;
   display: inline-block;
   transition: all 0.3s;
+  width: 200px;
 }
 
 .book-list > .book > .buttons > .favorites-button:hover {
@@ -140,35 +189,13 @@ a:hover {
   cursor: pointer;
 }
 
-/* ====== OLD Styles ======== */
-/* * {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-a {
-  color: white;
-  text-decoration: none;
-}
-
-.navbar {
-  width: 100%;
-  height: 10vh;
-  background: #565eaf;
-  color: #c2c8c6;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-} */
-
 /* ========= SearchBar Styles========== */
 .search {
   width: 100%;
   position: relative;
   display: flex;
-  margin-top: 60px;
-  margin-bottom: 30px;
+  margin-top: 80px;
+  margin-bottom: 20px;
 }
 
 .search-term {
@@ -177,25 +204,37 @@ a {
   border-right: none;
   padding: 5px;
   height: 36px;
-  border-radius: 30px 0 0 30px;
+  border-radius: 0.5rem 0 0 0.5rem;
   outline: none;
-  color: #9dbfaf;
+  color: goldenrod;
+  font-size: large;
 }
 
 .search-term:focus {
-  color: #3f4e51;
+  color: black;
 }
 
-.search-Button {
-  width: 40px;
-  height: 36px;
+.wrap > .search > button {
+  width: auto;
+  height: auto;
   border: 1px solid #c2c8c6;
-  background: #c2c8c6;
+  background: goldenrod;
   text-align: center;
   color: #fff;
-  border-radius: 0 30px 30px 0;
+  border-radius: 0 0.5rem 0.5rem 0;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 18px;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+.wrap > .search > button:hover {
+  opacity: 0.8;
+}
+
+.wrap > .search > button:active {
+  opacity: 0.6;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.15);
+  transform: translateY(2px);
 }
 
 /*Resize the wrap to see the search bar change!*/

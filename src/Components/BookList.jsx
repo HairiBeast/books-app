@@ -44,6 +44,7 @@ const BookList = () => {
           <input
             className="search-term"
             label="Name"
+            placeholder="Search for a book"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
@@ -64,7 +65,12 @@ const BookList = () => {
                 <h3>{book.title}</h3>
               </figcaption>
             </figure>
-            <p>{book?.Quote1}</p>
+            {/* <div className="rating-div">
+              <h3>Rating : {book.rating}</h3>
+            </div> */}
+            <div className="quote-div">
+              <p>{book.Quote1}</p>
+            </div>
             <div className="buttons">
               {favoritesChecker(book.id) ? (
                 <button

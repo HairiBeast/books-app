@@ -13,23 +13,34 @@ const Favorites = () => {
   };
 
   return (
-    <div className="favorites">
+    <div className="book-list">
       {favorites.length > 0 ? (
         favorites.map((book) => (
           <div className="book" key={book.id}>
-            <div>
-              <h4>{book.title}</h4>
-            </div>
-            <div>
-              <img src={book.image_url} alt="front cover" />
-            </div>
-            <div>
+            <figure>
+              <img
+                className="book-image"
+                src={book.image_url}
+                alt="front cover"
+              />
+              <figcaption>
+                <h3>{book.title}</h3>
+              </figcaption>
+            </figure>
+            <p>{book?.Quote1}</p>
+            <div className="buttons">
               {favoritesChecker(book.id) ? (
-                <button onClick={() => removeFromFavorites(book.id)}>
+                <button
+                  className="favorites-button"
+                  onClick={() => removeFromFavorites(book.id)}
+                >
                   Remove from favourites
                 </button>
               ) : (
-                <button onClick={() => addToFavorites(book)}>
+                <button
+                  className="favorites-button"
+                  onClick={() => addToFavorites(book)}
+                >
                   Add to favourites
                 </button>
               )}
