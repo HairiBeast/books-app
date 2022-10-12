@@ -51,9 +51,8 @@ const BookList = () => {
         </section>
       </div>
       {/* ===== End of Search Bar ===== */}
-
-      {books.map((book) => (
-        <section className="book-list" id="book-list">
+      <section className="book-list" id="book-list">
+        {books.map((book) => (
           <div className="book" key={book.id}>
             <figure>
               <img
@@ -84,8 +83,8 @@ const BookList = () => {
               )}
             </div>
           </div>
-        </section>
-      ))}
+        ))}
+      </section>
     </>
   );
 };
