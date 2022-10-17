@@ -61,9 +61,16 @@ a:hover {
   padding-bottom: 1rem;
 }
 
-.hero > article > p {
+.hero > article > .paragraph-background > p {
   font-size: 1.5rem;
-  font-weight: 200;
+  font-weight: 400;
+}
+
+.hero > article > .paragraph-background {
+  background-color: #72595a;
+  opacity: 0.6;
+  color: #e2e2e2;
+  border-radius: 00.5rem;
 }
 
 .hero > article > a {
